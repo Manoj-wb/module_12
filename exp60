@@ -1,0 +1,131 @@
+EX NO 12(E): FIND PEEK ELEMENT IN QUEUE USING LINKED LIST
+
+
+AIM:
+To write a program to find the peek (front) element in a queue implemented using a linked list.
+
+
+ALGORITHM:
+1.Start.
+2.Define the structure for a queue node.
+3.Create functions for enqueue and peek.
+4.In enqueue(), add an element to the rear of the queue.
+5.In peek(), return the element at the front of the queue.
+6.Accept user input to perform operations.
+7.End.
+
+
+
+PROGRAM:
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define structure for a node
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+struct Node* front = NULL;
+struct Node* rear = NULL;
+
+void enqueue(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = NULL;
+
+    if (rear == NULL) {
+        front = rear = newNode;
+    } else {
+        rear->next = newNode;
+        rear = newNode;
+    }
+    printf("%d enqueued to queue\n", value);
+}
+
+void peek() {
+    if (front == NULL)
+        printf("Queue is Empty\n");
+    else
+        printf("Peek element: %d\n", front->data);
+}
+
+void display() {
+    struct Node* temp = front;
+    if (temp == NULL) {
+        printf("Queue is Empty\n");
+        return;
+    }
+    printf("Queue elements: ");
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+
+int main() {
+    int choice, value;
+
+    do {
+        printf("\n1. Enqueue\n2. Peek\n3. Display\n4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter value to enqueue: ");
+                scanf("%d", &value);
+                enqueue(value);
+                break;
+            case 2:
+                peek();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                printf("Exiting...\n");
+                break;
+            default:
+                printf("Invalid Choice!\n");
+        }
+    } while (choice != 4);
+
+    return 0;
+}
+
+
+
+INPUT:
+1
+10
+1
+20
+2
+3
+4
+
+
+
+OUTPUT:
+Enter your choice: 1
+Enter value to enqueue: 10
+10 enqueued to queue
+
+Enter your choice: 1
+Enter value to enqueue: 20
+20 enqueued to queue
+
+Enter your choice: 2
+Peek element: 10
+
+Enter your choice: 3
+Queue elements: 10 20
+
+Enter your choice: 4
+Exiting...
+
+
+RESULT:
+Thus, the program is executed and verified successfully
